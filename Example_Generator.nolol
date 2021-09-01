@@ -1,0 +1,22 @@
+// Example generator automation
+
+// Include the pid_macros.nolol file
+include "pid_macros"
+// Define our PID parameters
+// This will need to be tuned to match how your
+//  ship drains it's battery
+//   PidDefines(SetPoint,Kp,Ki,Kd)
+PidDefines(95,2,0.001,1)
+// Main loop label for goto
+main>
+// --Actual PID code--
+// Being as the Battery can range from 0 to 10000
+//  we need to scale it down to 0 to 100 to match
+//  the GeneratorUnitRateLimit scale of 0 to 100.
+//
+//  To do this we devide the :Battery by 100 for
+//  the input.
+// CalcPID(:Input,:Output)
+CalcPID(:Battery/100,:GURL)
+// Loop back to Main loop label
+goto main
