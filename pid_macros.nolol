@@ -1,0 +1,24 @@
+macro PidDefines(SetPoint,Kp,Ki,Kd) block
+    // Kp=2
+    // Ki=0.001
+    // Kd=1
+    // SetPoint=0
+    PIDKp=Kp
+    PIDKi=Ki
+    PIDKd=Kd
+    PIDSetPoint=SetPoint
+    PIDP=0
+    PIDI=0
+    PIDD=0
+    PIDE=0
+end
+
+macro CalcPID(:Input,:Output) block
+    PIDPE=PIDE
+    PIDE=PIDSetPoint-:Input
+    PIDP=PIDKp*PIDE
+    Int+=PIDE/5
+    PIDI=PIDKi*Int
+    PIDD=PIDKd*(PIDE-PIDPE)*5
+    :Output=(PIDP+PIDI+PIDD)
+end
