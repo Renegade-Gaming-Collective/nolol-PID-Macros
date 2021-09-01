@@ -8,7 +8,7 @@ A PID(proportional integral derivative) library to help create PID code reliably
 ## Library file needed
 [pid_macros.nolol](pid_macros.nolol)
 
-## How to impliment this PID library
+## How to implement this PID library
 
 First include [pid_macros.nolol](pid_macros.nolol) in your nolol file.
 
